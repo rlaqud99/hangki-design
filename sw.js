@@ -1,5 +1,5 @@
 // 한끼설계소 서비스 워커 — 오프라인에서도 레시피를 볼 수 있도록 핵심 파일을 미리 저장해둡니다.
-const CACHE_NAME = "hangki-cache-v1";
+const CACHE_NAME = "hangki-cache-v2";
 const PRECACHE_URLS = [
   "./",
   "./index.html",
