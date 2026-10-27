@@ -690,6 +690,21 @@
     window.scrollTo({ top:0, behavior:"smooth" });
   }
 
+  function resetAppState(){
+    if(ttsSpeaking) stopTTS();
+    selectedTools = [];
+    selected = [];
+    currentRecipe = null;
+    if(ingInput) ingInput.value = "";
+    if(suggestBox){ suggestBox.innerHTML = ""; suggestBox.hidden = true; }
+    if(voiceStatus) voiceStatus.textContent = "";
+    currentScreen = 0;
+    screenEls.forEach(function(s, i){ s.hidden = (i !== 0); });
+    renderAll();
+    closeVideoEmbed();
+    updateTray();
+  }
+
   function renderTools(){
     toolGrid.innerHTML = "";
     TOOLS.forEach(function(t){
@@ -1080,7 +1095,7 @@
   document.getElementById("toScreen1BtnFromMenu").addEventListener("click", function(){ goToScreen(1); });
   document.getElementById("toScreen2BtnFromRecipe").addEventListener("click", function(){ goToScreen(2); });
   document.getElementById("homeBtn").addEventListener("click", function(){
-    closeVideoEmbed();
+    resetAppState();
     mainApp.hidden = true;
     introScreen.hidden = false;
     window.scrollTo({ top:0, behavior:"smooth" });
