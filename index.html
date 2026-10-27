@@ -74,10 +74,12 @@
   .brand-mark{ width:30px; height:30px; border-radius:9px; background:var(--accent); color:var(--accent-ink);
     display:flex; align-items:center; justify-content:center; font-family:'Noto Serif KR',serif; font-weight:700; font-size:15px; flex:none; }
   .brand-name{ font-size:14px; font-weight:700; letter-spacing:-.005em; color:var(--text); }
-  .home-link{ display:flex; align-items:center; gap:5px; font-size:13px; font-weight:700; color:var(--muted);
-    background:none; border:none; cursor:pointer; font-family:inherit; padding:6px 4px; transition:color .16s var(--ease); }
-  .home-link:hover{ color:var(--accent); }
-  .home-link .ic{ font-size:15px; }
+  .home-link{ display:flex; align-items:center; gap:7px; font-size:15.5px; font-weight:700; color:var(--text);
+    background:var(--surface-2); border:1.5px solid var(--line); border-radius:999px; cursor:pointer; font-family:inherit;
+    padding:10px 18px; transition:background .16s var(--ease), border-color .16s var(--ease), color .16s var(--ease); }
+  .home-link:hover{ color:var(--accent); border-color:var(--accent); }
+  .home-link:active{ transform:scale(.97); }
+  .home-link .ic{ font-size:18px; }
 
   .banner{ display:flex; gap:11px; align-items:flex-start; background:var(--surface);
     border:1px solid var(--line); border-left:3px solid var(--info); color:var(--text);
@@ -131,16 +133,19 @@
   .tool-card.on .icon{ background:var(--accent2); border-color:var(--accent2); }
   .tool-card.on .rate{ color:var(--accent2); font-weight:700; }
 
-  .input-row{ position:relative; margin-bottom:14px; display:flex; gap:10px; align-items:stretch; }
+  .input-row{ position:relative; margin-bottom:10px; display:flex; gap:10px; align-items:stretch; }
   .input-row input{ flex:1; min-width:0; font-size:19px; padding:16px; border:1.5px solid var(--line); border-radius:var(--radius-md); background:var(--surface-2); color:var(--text); font-family:inherit; transition:border-color .18s var(--ease), box-shadow .18s var(--ease); }
   .input-row input:focus-visible{ border-color:var(--accent); box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 14%, transparent); outline:none; }
-  .mic-btn{ flex:none; width:56px; border-radius:var(--radius-md); border:1.5px solid var(--line); background:var(--surface-2); color:var(--text); font-size:22px; cursor:pointer; transition:background .18s var(--ease), border-color .18s var(--ease), transform .12s var(--ease); }
-  .mic-btn:hover{ border-color:var(--accent); }
-  .mic-btn:active{ transform:scale(.96); }
-  .mic-btn.listening{ background:var(--accent); border-color:var(--accent); color:var(--accent-ink); animation:pulse-ring 1.4s var(--ease) infinite; }
-  @keyframes pulse-ring{ 0%,100%{ box-shadow:0 0 0 0 color-mix(in srgb, var(--accent) 35%, transparent); } 50%{ box-shadow:0 0 0 8px color-mix(in srgb, var(--accent) 0%, transparent); } }
-  .mic-btn:disabled{ opacity:.4; cursor:not-allowed; }
-  .voice-status{ font-size:13.5px; color:var(--accent); margin:-8px 0 14px; min-height:18px; }
+  .mic-full-btn{ width:100%; display:flex; align-items:center; justify-content:center; gap:9px; font-size:15.5px; font-weight:700;
+    padding:13px; border-radius:var(--radius-md); border:1.5px dashed var(--line); background:var(--surface-2); color:var(--muted);
+    cursor:pointer; margin-bottom:12px; font-family:inherit; transition:background .18s var(--ease), border-color .18s var(--ease), color .18s var(--ease), transform .12s var(--ease); }
+  .mic-full-btn .mic-ic{ font-size:19px; }
+  .mic-full-btn:hover{ border-color:var(--accent2); color:var(--accent2); border-style:solid; }
+  .mic-full-btn:active{ transform:scale(.98); }
+  .mic-full-btn.listening{ background:var(--accent2); border-color:var(--accent2); border-style:solid; color:var(--accent2-ink); animation:pulse-ring 1.4s var(--ease) infinite; }
+  @keyframes pulse-ring{ 0%,100%{ box-shadow:0 0 0 0 color-mix(in srgb, var(--accent2) 35%, transparent); } 50%{ box-shadow:0 0 0 8px color-mix(in srgb, var(--accent2) 0%, transparent); } }
+  .mic-full-btn:disabled{ opacity:.4; cursor:not-allowed; }
+  .voice-status{ font-size:13.5px; color:var(--accent); margin:0 0 14px; min-height:18px; }
   .suggest{ position:absolute; left:0; right:0; top:calc(100% + 6px); background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-md); box-shadow:var(--shadow-lift); overflow:hidden; z-index:5; }
   .suggest button{ display:block; width:100%; text-align:left; background:none; border:none; font-size:18px; padding:14px 16px; color:var(--text); font-family:inherit; cursor:pointer; border-bottom:1px solid var(--line); transition:background .14s var(--ease); }
   .suggest button:last-child{ border-bottom:none; }
@@ -390,9 +395,9 @@
 
   <div class="input-row">
     <input id="ingInput" type="text" placeholder="예: 두부, 김치, 쌀…" autocomplete="off" aria-label="재료 검색">
-    <button class="mic-btn" id="micBtn" type="button" aria-label="음성으로 재료 입력">🎤</button>
     <div class="suggest" id="suggestBox" hidden></div>
   </div>
+  <button class="mic-full-btn" id="micBtn" type="button" aria-label="음성으로 재료 입력"><span class="mic-ic">🎤</span>음성으로 재료 말하기</button>
   <p class="voice-status" id="voiceStatus"></p>
   <button class="quick-fill" id="quickFill" type="button">예시로 채워보기</button>
 
